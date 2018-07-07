@@ -3,11 +3,12 @@ CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE messages (
+CREATE TABLE `messages` (
   `id` MEDIUMINT(8) NOT NULL AUTO_INCREMENT,
-  `message` VARCHAR(20),
-  `user` MEDIUMINT(8),
-  `room` MEDIUMINT(8),
+  `message` VARCHAR(140),
+  `username` MEDIUMINT(8),
+  `roomname` MEDIUMINT(8),
+  `created_at` DATE NOT NULL,
   PRIMARY KEY (`id`)
   -- FOREIGN KEY (`user`) REFERENCES `users`(`id`),
   -- FOREIGN KEY (`room`) REFERENCES `roomname`(`id`)
@@ -25,8 +26,8 @@ CREATE TABLE `roomname` (
   PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `messages` ADD FOREIGN KEY (`user`) REFERENCES `users`(`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (`room`) REFERENCES `roomname`(`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (`username`) REFERENCES `users`(`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (`roomname`) REFERENCES `roomname`(`id`);
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql
