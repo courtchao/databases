@@ -1,27 +1,39 @@
+DROP DATABASE chat;
 CREATE DATABASE chat;
 
 USE chat;
 
 CREATE TABLE messages (
-  id INTEGER NOT NULL AUTO INCREMENT,
-  message VARCHAR NOT NULL,
-  user VARCHAR NOT NULL,
-  roomname VARCHAR NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (user) REFERENCES users(id),
-  FOREIGN KEY (roomname) REFERENCES rooms(id)
+  `id` MEDIUMINT(8) NOT NULL AUTO_INCREMENT,
+  `message` VARCHAR(20) NOT NULL,
+  `user` MEDIUMINT(8) NOT NULL,
+  `roomname` MEDIUMINT(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`roomname`) REFERENCES `rooms`(`id`)
 );
 
-CREATE TABLE users (
-  id INTEGER NOT NULL AUTO INCREMENT,
-  name VARCHAR NOT NULL,
-  PRIMARY KEY (id)
+CREATE TABLE `users` (
+  `id` MEDIUMINT(8) NOT NULL AUTO INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`)
 );
+
+-- CREATE TABLE `users` (
+--     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     `username` VARCHAR(20) NOT NULL,
+--     `password` VARCHAR(40) NOT NULL,
+--     `salt` VARCHAR(40) DEFAULT NULL,
+--     `email` VARCHAR(80) NOT NULL,
+--     `created_on` INT(11) UNSIGNED NOT NULL,
+--     `last_login` INT(11) UNSIGNED DEFAULT NULL,
+--     `active` TINYINT(1) UNSIGNED DEFAULT NULL
+-- );
 
 CREATE TABLE rooms (
-  id INTEGER NOT NULL AUTO INCREMENT,
-  name VARCHAR NOT NULL,
-  PRIMARY KEY (id)
+  `id` MEDIUMINT(8) NOT NULL AUTO INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
 /* Create other tables and define schemas for them here! */
