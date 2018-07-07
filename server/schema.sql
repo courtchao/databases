@@ -1,45 +1,32 @@
-DROP DATABASE chat;
+DROP DATABASE IF EXISTS chat;
 CREATE DATABASE chat;
 
 USE chat;
 
 CREATE TABLE messages (
   `id` MEDIUMINT(8) NOT NULL AUTO_INCREMENT,
-  `message` VARCHAR(20) NOT NULL,
-  `user` MEDIUMINT(8) NOT NULL,
-  `roomname` MEDIUMINT(8) NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`user`) REFERENCES `users`(`id`),
-  FOREIGN KEY (`roomname`) REFERENCES `rooms`(`id`)
+  `message` VARCHAR(20),
+  `user` MEDIUMINT(8),
+  `room` MEDIUMINT(8),
+  PRIMARY KEY (`id`)
+  -- FOREIGN KEY (`user`) REFERENCES `users`(`id`),
+  -- FOREIGN KEY (`room`) REFERENCES `roomname`(`id`)
 );
 
 CREATE TABLE `users` (
-  `id` MEDIUMINT(8) NOT NULL AUTO INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
+  `id` MEDIUMINT(8) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20),
   PRIMARY KEY (`id`)
 );
 
--- CREATE TABLE `users` (
---     `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     `username` VARCHAR(20) NOT NULL,
---     `password` VARCHAR(40) NOT NULL,
---     `salt` VARCHAR(40) DEFAULT NULL,
---     `email` VARCHAR(80) NOT NULL,
---     `created_on` INT(11) UNSIGNED NOT NULL,
---     `last_login` INT(11) UNSIGNED DEFAULT NULL,
---     `active` TINYINT(1) UNSIGNED DEFAULT NULL
--- );
-
-CREATE TABLE rooms (
-  `id` MEDIUMINT(8) NOT NULL AUTO INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
+CREATE TABLE `roomname` (
+  `id` MEDIUMINT(8) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20),
   PRIMARY KEY (`id`)
 );
 
-/* Create other tables and define schemas for them here! */
-
-
-
+ALTER TABLE `messages` ADD FOREIGN KEY (`user`) REFERENCES `users`(`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (`room`) REFERENCES `roomname`(`id`);
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql
