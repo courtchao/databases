@@ -23,6 +23,7 @@ describe('Persistent Node Chat Server', function() {
     dbConnection.query('truncate ' + 'messages', done);
     dbConnection.query('truncate ' + 'users', done);
     dbConnection.query('truncate ' + 'roomname', done);
+    done();
   });
 
   afterEach(function() {
